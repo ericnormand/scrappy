@@ -1,0 +1,2 @@
+default: next
+pattern: secondchance-crawler-%s
