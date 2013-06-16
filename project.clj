@@ -11,6 +11,8 @@
 
   :main ^{:skip-aot true} com.secondchance.scrappy.worker
 
+  :min-lein-version "2.0.0"
+
   :plugins [[org.timmc/lein-otf "2.0.1"]
             [s3-wagon-private "1.1.2"]]
 
