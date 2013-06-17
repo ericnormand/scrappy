@@ -2,8 +2,7 @@
   (:require [clojure.test :refer [deftest is]]
             [clojure.java.io :as io]
             [clojure.set :as set]
-            [com.secondchance.scrappy.scraper :as scraper]
-))
+            [com.secondchance.scrappy.scraper :as scraper]))
 
 (defn and* [& fns]
   (fn [x]
@@ -25,8 +24,7 @@
                 (reduce (fn [mp {:keys [name extension file]}]
                           (assoc-in mp [name extension] file)) {})
                 (filter #(set/superset? (set (keys (% 1))) #{:url :exp :html}))
-                (into {})
-                ))
+                (into {})))
 
 (deftest test-all
   (doseq [[name {:keys [url exp html]}] tests
