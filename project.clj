@@ -25,4 +25,6 @@
 
   :main com.secondchance.scrappy.core
 
+  :test-paths ["test"]
+
   :uberjar-name "scrappy.jar")
