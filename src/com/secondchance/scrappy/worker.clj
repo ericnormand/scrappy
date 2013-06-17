@@ -10,10 +10,6 @@
   (.setLevel (java.util.logging.Logger/getLogger "com.amazonaws")
              java.util.logging.Level/WARNING))
 
-(def client (sqs/create-client (env :aws-access-key) (env :aws-secret-key)))
-
-(def queue (sqs/create-queue client "listings"))
-
 (def dean-endpoint (or (env :scrappy-dean-endpoint)
                        "http://localhost:7474/internal/listings"))
 
@@ -32,11 +28,13 @@
 
 (defn -main
   [& args]
-  (set-log-level)
-  (loop []
-    (doall
-     (map (sqs/deleting-consumer client (comp handle :body))
-          (sqs/polling-receive client queue :limit 10)))
-    (Thread/sleep 5000)
-    (recur)))
-
+  (let [client (sqs/create-client (env :aws-access-key)
+                                  (env :aws-secret-key))
+        queue (sqs/create-queue client "listings")]
+    (set-log-level)
+    (loop []
+      (doall
+       (map (sqs/deleting-consumer client (comp handle :body))
+            (sqs/polling-receive client queue :limit 25)))
+      (Thread/sleep 5000)
+      (recur))))
