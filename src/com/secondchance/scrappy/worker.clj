@@ -35,6 +35,6 @@
     (loop []
       (doall
        (map (sqs/deleting-consumer client (comp handle :body))
-            (sqs/polling-receive client queue :limit 25)))
+            (sqs/polling-receive client queue :limit 10)))
       (Thread/sleep 5000)
       (recur))))

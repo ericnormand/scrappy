@@ -1,1 +1,1 @@
-crawler: lein with-profile production trampoline run
+crawler: lein with-profile worker trampoline run

@@ -10,14 +10,13 @@
                  [org.clojure/clojure "1.5.1"]
                  [org.clojure/tools.cli "0.2.2"]]
 
-  :main ^{:skip-aot true} com.secondchance.scrappy.worker
-
   :min-lein-version "2.0.0"
 
   :plugins [[org.timmc/lein-otf "2.0.1"]
             [s3-wagon-private "1.1.2"]]
 
-  :profiles {:prod {}}
+  :profiles {:worker
+             {:main ^{:skip-aot true} com.secondchance.scrappy.worker}}
 
   :repositories [["s3" {:url "s3p://secondchance.maven/releases/"
                         :username :env
