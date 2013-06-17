@@ -7,7 +7,8 @@
                  [enlive "1.1.1"]
                  [environ "0.4.0"]
                  [evaljs "0.1.2"]
-                 [org.clojure/clojure "1.5.1"]]
+                 [org.clojure/clojure "1.5.1"]
+                 [org.clojure/tools.cli "0.2.2"]]
 
   :main ^{:skip-aot true} com.secondchance.scrappy.worker
 
@@ -22,5 +23,6 @@
                         :username :env
                         :passphrase :env}]]
 
-  :uberjar-name "scrappy.jar")
+  :main com.secondchance.scrappy.core
 
+  :uberjar-name "scrappy.jar")
