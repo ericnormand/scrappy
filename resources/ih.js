@@ -22451,7 +22451,7 @@
                 "js": ""
             },
             "mpn": {
-                "regex": "Model#[\\1-\\uFFFF]+?-->\\s*([\\1-\\uFFFF]+?)\\s*<!",
+                "regex": "itemprop=\"model\">\\s*(?:&nbsp;)?([\\1-\\uFFFF]+?)\\s*</",
                 "js": ""
             },
             "brand": {
