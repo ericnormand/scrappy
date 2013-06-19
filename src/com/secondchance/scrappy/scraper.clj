@@ -171,7 +171,7 @@ representation with scraper functions."
   [url s]
   (when-let [name (first (retailer-url-matches url))]
     (assoc (retailer-scrape (get ih name) s)
-      :url url)))
+      :url url :uuid (str (java.util.UUID/randomUUID)))))
 
 (defn supported?
   [url]
@@ -187,6 +187,7 @@ representation with scraper functions."
   (when (supported? url)
     (try
       (let [resp (client/get url {:headers default-headers})
-            raw-html (:body resp)]
-        (scrape url raw-html))
+            raw-html (:body resp)
+            scraped (scrape url raw-html)]
+        {:raw raw-html :scraped scraped})
       (catch Exception e nil))))

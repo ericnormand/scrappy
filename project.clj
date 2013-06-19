@@ -2,6 +2,7 @@
   :description "Let me at 'em!"
 
   :dependencies [[cheshire "5.2.0"]
+                 [clj-aws-s3 "0.3.6"]
                  [clj-http "0.7.2"]
                  [com.cemerick/bandalore "0.0.3"]
                  [enlive "1.1.1"]
