@@ -25,13 +25,11 @@
     (let [result (scraper/scrape-remote url)
           scraped (:scraped result)
           raw (:raw result)
-          uuid (:uuid scraped)
-          product? (and (:price scraped) (:mpn scraped))]
-      (when product?
-        (client/post dean-endpoint
-                     {:content-type :json
-                      :body (json/generate-string scraped)})
-        (s3/put-object aws-creds "secondchance.listings" uuid raw)))
+          uuid (:uuid scraped)]
+      (client/post dean-endpoint
+                   {:content-type :json
+                    :body (json/generate-string scraped)})
+      (s3/put-object aws-creds "secondchance.listings" uuid raw))
     (catch Exception e nil)))
 
 (defn -main
