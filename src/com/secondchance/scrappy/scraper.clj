@@ -38,7 +38,7 @@ invalid."
       (fn [s]
         (let [ms (re-find pattern s)]
           (when (>= (count ms) 2)
-            (ms 1)))))
+            (.trim (ms 1))))))
     (catch Throwable t
       (swap! regex-errors conj [regex (str t)])
       nil)))

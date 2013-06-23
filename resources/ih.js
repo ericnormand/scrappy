@@ -17192,7 +17192,7 @@
                 "js": null
             },
             "mpn": {
-                "regex": "<li><b>Item model number:</b>\\s*(.+?)</li>",
+                "regex": "<li><b>(?:Item model number:)</b>\\s*(.+?)</li>",
                 "js": null
             },
             "brand": {

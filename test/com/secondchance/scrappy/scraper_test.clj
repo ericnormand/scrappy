@@ -4,10 +4,6 @@
             [clojure.set :as set]
             [com.secondchance.scrappy.scraper :as scraper]))
 
-(defn and* [& fns]
-  (fn [x]
-    (every? #(% x) fns)))
-
 (defn augment-file [f]
   (let [m (re-matches #"^(.*)\.(.*)$" (.getName f))]
     {:file f
@@ -20,7 +16,7 @@
                (map augment-file)))
 
 (def tests (->> files
-                (filter (and* :name :extension))
+                (filter (every-pred :name :extension))
                 (reduce (fn [mp {:keys [name extension file]}]
                           (assoc-in mp [name extension] file)) {})
                 (filter #(set/superset? (set (keys (% 1))) #{:url :exp :html}))
