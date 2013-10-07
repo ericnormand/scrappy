@@ -1,30 +1,13 @@
 (defproject com.secondchance/scrappy "0.1.0-SNAPSHOT"
-  :description "Let me at 'em!"
 
-  :dependencies [[cheshire "5.2.0"]
-                 [clj-aws-s3 "0.3.6"]
-                 [clj-http "0.7.2"]
-                 [com.cemerick/bandalore "0.0.3"]
-                 [enlive "1.1.1"]
-                 [environ "0.4.0"]
-                 [evaljs "0.1.2"]
-                 [org.clojure/clojure "1.5.1"]
-                 [org.clojure/tools.cli "0.2.2"]]
+  :description "Let me at em!"
 
-  :min-lein-version "2.0.0"
+  :dependencies [[org.clojure/clojure "1.5.1"]
+                 [org.jsoup/jsoup "1.7.2"]]
 
-  :plugins [[org.timmc/lein-otf "2.0.1"]
-            [s3-wagon-private "1.1.2"]]
+  :plugins [[s3-wagon-private "1.1.2"]]
 
-  :profiles {:worker
-             {:main ^{:skip-aot true} com.secondchance.scrappy.worker}}
-
-  :repositories [["s3" {:url "s3p://secondchance.maven/releases/"
-                        :username :env
-                        :passphrase :env}]]
-
-  :main com.secondchance.scrappy.core
-
-  :test-paths ["test"]
-
-  :uberjar-name "scrappy.jar")
+  :repositories {"secondchance" {:url "s3p://maven.secondchance/releases/"
+                                 :username ~(System/getenv "AWS_ACCESS_KEY")
+                                 :passphrase ~(System/getenv "AWS_SECRET_KEY")
+                                 :sign-releases false}})
