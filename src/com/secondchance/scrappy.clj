@@ -17,6 +17,16 @@
     (pos? (.length v))
     false))
 
+(defn trim [s]
+  (.trim s))
+
+(defn clean [s]
+  (string/replace s #"[ \s]+" " "))
+
+(defn clean-trim [s]
+  (trim (clean s)))
+
+
 (defn select
   [raw parsed {:keys [select extract regex clean string] :as sel}]
   (try
@@ -24,28 +34,28 @@
      (and select extract clean)
      (first (for [el (.select parsed select)
                   :let [v (catch-errors
-                           (second (map string/trim
+                           (second (map clean-trim
                                         (re-find clean (reduce get-attr el extract)))))]
                   :when (worthwhile? v)]
               v))
      (and select extract)
      (first (for [el (.select parsed select)
-                  :let [v (catch-errors (.trim (reduce get-attr el extract)))]
+                  :let [v (catch-errors (clean-trim (reduce get-attr el extract)))]
                   :when (worthwhile? v)]
               v))
      (and select clean)
      (first (for [el (.select parsed select)
                   :let [v (catch-errors
-                           (second (map string/trim (re-find clean (.text el)))))]
+                           (second (map clean-trim (re-find clean (.text el)))))]
                   :when (worthwhile? v)]
               v))
      select
      (first (for [el (.select parsed select)
-                  :let [v (.trim (.text el))]
+                  :let [v (clean-trim (.text el))]
                   :when (worthwhile? v)]
               v))
      regex
-     (.trim (second (re-find regex raw))))
+     (clean-trim (second (re-find regex raw))))
     (catch Throwable e
       nil)))
 
