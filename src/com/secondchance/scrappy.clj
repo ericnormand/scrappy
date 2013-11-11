@@ -62,7 +62,10 @@
                   :when (worthwhile? v)]
               v))
      regex
-     (clean-trim (second (re-find regex raw))))
+     (first (for [[_ s] (re-seq regex raw)
+                  :let [v (clean-trim s)]
+                  :when (worthwhile? v)]
+              v)))
     (catch Throwable e
       nil)))
 
