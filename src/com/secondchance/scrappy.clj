@@ -50,11 +50,7 @@
                   :when (worthwhile? v)]
               v))
      (and select value)
-     (when (seq (for [el (.select parsed select)
-                      :let [v (catch-errors
-                               (second (map clean-trim (re-find clean (.text el)))))]
-                      :when (worthwhile? v)]
-                  v))
+     (when (seq (.select parsed select))
        value)
      select
      (first (for [el (.select parsed select)
