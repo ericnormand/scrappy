@@ -1,4 +1,4 @@
-(defproject com.secondchance/scrappy "0.1.1"
+(defproject com.secondchance/scrappy "0.2.1"
   :description "Let me at em!"
 
   :dependencies [[org.clojure/clojure "1.5.1"]
