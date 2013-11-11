@@ -28,7 +28,7 @@
 
 
 (defn select
-  [raw parsed {:keys [select extract regex clean string] :as sel}]
+  [raw parsed {:keys [select extract regex clean string value] :as sel}]
   (try
     (cond
      (and select extract clean)
@@ -49,6 +49,13 @@
                            (second (map clean-trim (re-find clean (.text el)))))]
                   :when (worthwhile? v)]
               v))
+     (and select value)
+     (when (seq (for [el (.select parsed select)
+                      :let [v (catch-errors
+                               (second (map clean-trim (re-find clean (.text el)))))]
+                      :when (worthwhile? v)]
+                  v))
+       value)
      select
      (first (for [el (.select parsed select)
                   :let [v (clean-trim (.text el))]
