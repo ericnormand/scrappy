@@ -43,6 +43,13 @@
                   :let [v (catch-errors (clean-trim (reduce get-attr el extract)))]
                   :when (worthwhile? v)]
               v))
+     (and select clean value)
+     (when (seq (for [el (.select parsed select)
+                      :let [v (catch-errors
+                               (second (map clean-trim (re-find clean (.text el)))))]
+                      :when (worthwhile? v)]
+                  v))
+       value)
      (and select clean)
      (first (for [el (.select parsed select)
                   :let [v (catch-errors
