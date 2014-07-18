@@ -1,2 +1,0 @@
-default: staging
-pattern: secondchance-crawler-%s
