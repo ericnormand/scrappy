@@ -86,14 +86,14 @@
   [_ _ dom {select :select extract :extract}]
   (first (for [el (select-children dom select)
                :let [v (catch-errors
-                        (clean-trim (reduce get-attr (wrap el) extract)))]
+                        (clean-trim (get-attr (wrap el) extract)))]
                :when (worthwhile? v)]
            v)))
 
 (defmethod scrape-field* #{:select :extract :clean}
   [_ _ dom {select :select extract :extract clean :clean}]
   (first (for [el (select-children dom select)
-               :let [text (reduce get-attr (wrap el) extract)
+               :let [text (get-attr (wrap el) extract)
                      v (catch-errors (find-regex (re-pattern clean) text))]
                :when (worthwhile? v)]
            v)))

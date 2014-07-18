@@ -1,9 +1,16 @@
-(defproject com.secondchance/scrappy "1.0.0"
+(defproject com.secondchance/scrappy "1.1.0"
   :description "Let me at em!"
 
   :dependencies [[org.clojure/clojure "1.5.1"]
+                 [org.clojure/clojurescript "0.0-2202"]
                  [org.jsoup/jsoup "1.7.2"]
                  [jayq "2.4.0"]]
+
+  :plugins [[s3-wagon-private "1.1.2"]
+            [com.keminglabs/cljx "0.3.2"]
+            [lein-cljsbuild "1.0.3"]
+            [com.cemerick/austin "0.1.4"]
+            [com.cemerick/clojurescript.test "0.3.0"]]
 
   :cljx {:builds [{:source-paths ["src/cljx" "test/cljx"]
                    :output-path "target/classes/clj"
@@ -16,7 +23,7 @@
   :hooks [cljx.hooks
           leiningen.cljsbuild]
 
-  :source-paths ["src/clj"]
+  :source-paths ["src/clj" "target/classes/cljs"]
   :test-paths ["target/classes/clj"]
 
   :cljsbuild {:builds [{:id "test"
@@ -32,8 +39,7 @@
                                             "resources/jquery.js"
                                             "target/test.js"]}}
 
-  :profiles {:dev {:dependencies [[org.clojure/clojurescript "0.0-2202"]]
-                   :plugins [[s3-wagon-private "1.1.2"]
+  :profiles {:dev {:plugins [[s3-wagon-private "1.1.2"]
                              [com.keminglabs/cljx "0.3.2"]
                              [lein-cljsbuild "1.0.3"]
                              [com.cemerick/austin "0.1.4"]
