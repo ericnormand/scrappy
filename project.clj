@@ -1,5 +1,8 @@
 (defproject com.secondchance/scrappy "1.1.0"
-  :description "Let me at em!"
+  :description "\"Let me at em!\" -- Scrappy Do
+A scraping DSL + engine for reading the web."
+  :license "Eclipse Public License 1.0"
+  :url "https://github.com/secctech/scrappy"
 
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/clojurescript "0.0-2202"]
