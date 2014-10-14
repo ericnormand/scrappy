@@ -23,7 +23,7 @@
   :hooks [cljx.hooks
           leiningen.cljsbuild]
 
-  :source-paths ["src/clj" "target/classes/cljs"]
+  :source-paths ["src/clj" "target/classes/cljs" "target/classes/clj"]
   :test-paths ["target/classes/clj"]
 
   :cljsbuild {:builds [{:id "test"
