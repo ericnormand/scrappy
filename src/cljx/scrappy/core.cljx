@@ -141,3 +141,8 @@
                             :let [v (scrape-field url html dom sel)]
                             :when (worthwhile? v)]
                         [k v]))))))
+
+(defn extractor
+  [html selector]
+  (let [dom (->dom html)]
+    (map str (select-children dom selector))))

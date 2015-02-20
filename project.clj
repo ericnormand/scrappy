@@ -1,4 +1,4 @@
-(defproject com.secondchance/scrappy "1.1.0"
+(defproject com.secondchance/scrappy "1.2.0"
   :description "\"Let me at em!\" -- Scrappy Do
 A scraping DSL + engine for reading the web."
   :license "Eclipse Public License 1.0"
